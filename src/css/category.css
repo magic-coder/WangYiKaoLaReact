@@ -1,0 +1,79 @@
+.category_container {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 2.15rem;
+  margin-bottom: 2.1rem;
+  height: 100%;
+  flex: 1;
+}
+.category_container .left_bar {
+  position: fixed;
+  left: 0;
+  width: 4.5rem;
+  font-size: .5rem;
+  text-align: center;
+  height: 88vh;
+  border-right: 1px solid #e2e2e2;
+  overflow-y: scroll;
+}
+.category_container .bar_item {
+  height: 2.15rem;
+  line-height: 2.15rem;
+}
+.category_container .bar_item .menu_area {
+  width: 3.68rem;
+  text-align: center;
+  display: inline-block;
+  height: 1.25rem;
+  line-height: 1.25rem;
+  font-size: .6rem;
+}
+.category_container .bar_item .active {
+  background-color: #343434;
+  color: white;
+  border-radius: 1rem;
+}
+.category_container .bar_item:last-child {
+  margin-bottom: 2.1rem;
+}
+.category_container .right_content {
+  box-sizing: border-box;
+  height: 85%;
+  overflow-y: scroll;
+  background-color: #fff;
+  flex: 1;
+  margin-left: 4.5rem;
+}
+.category_container .right_brand_top {
+  padding: .8rem .65rem;
+}
+.category_container .right_brand_top span {
+  font-size: .6rem;
+  font-weight: 700;
+}
+.category_container .right_brand_top a {
+  font-size: .6rem;
+  display: inline-block;
+  float: right;
+  color: #ff8c91;
+}
+.category_container .right_brand_top a img {
+  width: .2rem;
+}
+.category_container .right_brand_ul {
+  width: 100%;
+  overflow: hidden;
+}
+.category_container .right_brand_ul li {
+  width: 33.33%;
+  float: left;
+  text-align: center;
+}
+.category_container .right_brand_ul li dd {
+  font-size: .6rem;
+  color: #666;
+}
+.category_container .right_brand_ul li img {
+  width: 100%;
+  height: 100%;
+}

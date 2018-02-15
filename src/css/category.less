@@ -1,0 +1,82 @@
+.category_container{
+  width:100%;
+  background-color: #fff;
+  margin-top: 2.15rem;
+  margin-bottom:2.1rem;
+  height: 100%;
+  flex:1;
+
+  .left_bar{
+    position: fixed;
+    left: 0;
+    width: 4.5rem;
+    font-size: .5rem;
+    text-align: center;
+    height:88vh;
+    border-right: 1px solid #e2e2e2;
+    overflow-y: scroll;
+  }
+  .bar_item{
+    height:2.15rem;
+    line-height: 2.15rem;
+    .menu_area{
+      width: 3.68rem;
+      text-align: center;
+      display: inline-block;
+      height: 1.25rem;
+      line-height: 1.25rem;
+      font-size: .6rem;
+    }
+    .active{
+      background-color: #343434;
+      color: white;
+      border-radius: 1rem;
+    }
+  }
+  .bar_item:last-child{
+    margin-bottom: 2.1rem;
+  }
+
+  .right_content{
+    box-sizing: border-box;
+    height:85%;
+    overflow-y: scroll;
+    background-color: #fff;
+    flex:1;
+    margin-left: 4.5rem;
+  }
+  .right_brand_top{
+    padding: .8rem .65rem;
+    span{
+      font-size: .6rem;
+      font-weight: 700;
+    }
+    a{
+      font-size: .6rem;
+      display: inline-block;
+      float: right;
+      color: #ff8c91;
+      img{
+        width: .2rem;
+      }
+    }
+  }
+  .right_brand_ul{
+    width:100%;
+    overflow: hidden;
+    li{
+      width:33.33%;
+      float: left;
+      text-align: center;
+      dd{
+        font-size: .6rem;
+        color: #666;
+      }
+      img{
+        width: 100%;
+        height:100%;
+      }
+    }
+  }
+
+}
