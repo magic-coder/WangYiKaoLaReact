@@ -158,12 +158,8 @@ class GoodsContent extends Component{
     };
 
     handleAddCart = () =>{
-        const that = this;
         this.props.dispatch(addCart(func.getData('goodsData')));
         this.setState({cartFlag : true});
-        setTimeout(function(){
-            that.setState({cartFlag : false});
-        },1500)
     };
 
     handleTransfer = (type) =>{

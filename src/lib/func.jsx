@@ -79,6 +79,21 @@ const func = {
         localStorage.removeItem(key);
     },
 
+
+    /**
+     *  将一二三级分类归在一起的方法。(递归)
+     */
+    loop (type , data) {
+        let typeList = [];
+        data.map((item,index)=>{
+            if(type.type_id === item.type_parentId){
+                typeList.push(item);
+                type.subList = typeList;
+                this.loop(item , data);
+            }
+        })
+    }
+
 }
 
 export default func
