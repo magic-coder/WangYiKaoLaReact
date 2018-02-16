@@ -8,12 +8,22 @@ import hasCollect from '../../image/icon/goods_collected.png';
 import CartIcon from '../../image/icon/cart_normal.png';
 
 import Carousel from '../base/Carousel';
+import Modal from '../base/Modal';
 
 import {config} from '../../lib/config';
 import func from '../../lib/func';
 import {connect} from 'react-redux';
-import {addCart , addCollect} from "../../store/action";
+import {addCart , addCollect ,clickBar} from "../../store/action";
 
+const ModalContent = {
+    modalContent: '成功添加到购物车，要现在去购物车看看吗~',
+    leftBtn: {
+        text: '留在这里'
+    },
+    rightBtn: {
+        text: '前往购物车'
+    }
+};
 class GoodsContent extends Component{
     constructor(){
         super();
@@ -23,6 +33,7 @@ class GoodsContent extends Component{
             CarouselData : [],
             goodsData : {},
             collectFlag : false,
+            cartFlag : false,
         };
     }
     render(){
@@ -34,7 +45,14 @@ class GoodsContent extends Component{
             flag = item.goods_id === goodsData.goods_id ? true : false;
         });
         return(
-            <div className="content">
+            <div className="content home">
+                {
+                    this.state.cartFlag ? <Modal
+                        {...ModalContent}
+                        onLeftClick={() => this.handleControlModal('')}
+                        onRightClick = {()=>this.handleTransfer('cart')}
+                    /> : ''
+                }
                 <header>
                     <ul className="content_navbar">
                         <li className="active">商品</li>
@@ -101,7 +119,7 @@ class GoodsContent extends Component{
                             <dd>购物车</dd>
                         </dl>
                     </a>
-                    <a onClick={cartData => dispatch(addCart(goodsData))} className="right_item addcart">
+                    <a onClick={()=>this.handleAddCart()} className="right_item addcart">
                         加入购物车
                     </a>
                     <a className="right_item">
@@ -139,13 +157,30 @@ class GoodsContent extends Component{
         },1500)
     };
 
+    handleAddCart = () =>{
+        const that = this;
+        this.props.dispatch(addCart(func.getData('goodsData')));
+        this.setState({cartFlag : true});
+        setTimeout(function(){
+            that.setState({cartFlag : false});
+        },1500)
+    };
+
     handleTransfer = (type) =>{
         switch (type) {
             case 'return' :
                 this.props.history.goBack();
                 break;
+            case 'cart' :
+                this.props.dispatch(clickBar('3'));
+                this.props.history.push(config.path + '/cart');
+                break;
             default : this.props.history.push(config.path + '/');
         }
+    }
+
+    handleControlModal = () =>{
+        this.setState({cartFlag:!this.state.cartFlag});
     }
 
 }

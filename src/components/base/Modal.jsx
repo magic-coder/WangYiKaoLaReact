@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import '../../css/Index.css';
 
 class Modal extends Component{
     constructor(){

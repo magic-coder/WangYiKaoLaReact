@@ -85,7 +85,7 @@ class Index extends Component {
                 <SortList Sort = {this.state.SortData} />
                 <Activity/>
                 <p className="choise_activity_title"><img className="comment_icon" src={choise_icon} />精选活动</p>
-                <Choise_Activity/>
+                <Choise_Activity history = {history} />
                 <p className="choise_activity_title"><img className="comment_icon" src={goods_icon} />为你推荐</p>
                 <Product ProductData = {this.state.ProductData} history = {history} />
                 </div>
