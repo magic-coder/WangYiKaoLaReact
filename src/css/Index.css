@@ -114,6 +114,15 @@ footer .active .footer-title {
   left: 1.28rem;
   font-size: .6rem;
 }
+.home .search > input {
+  position: absolute;
+  left: 1.28rem;
+  font-size: .6rem;
+  height: 99%;
+  border: none;
+  background-color: #e6e6e6;
+  outline: none;
+}
 .home .menu_message {
   width: 1.1rem;
 }

@@ -10,6 +10,7 @@ import Cart from './cart/Cart';
 import GoodsContent from './product/GoodsContent';
 import Person from './person/Person';
 import Collect from './person/Collect';
+import Search from './search/Search';
 /*路由文件*/
 import {
     BrowserRouter as Router,
@@ -46,6 +47,7 @@ class RouterIndex extends Component {
                         <Route path={config.path + "/goods/:GoodsId"} component={GoodsContent} />
                         <Route path={config.path + '/my'} component={Person} />
                         <Route path={config.path + '/collect'} component={Collect} />
+                        <Route path={config.path + '/search'} component={Search} />
                         <Route component={Index} />
                     </Switch>
 

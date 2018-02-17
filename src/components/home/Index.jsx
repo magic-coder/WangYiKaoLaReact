@@ -79,7 +79,7 @@ class Index extends Component {
         const {history} = this.props;
         return(
             <div className="home">
-                <HeaderSearch/>
+                <HeaderSearch history = {history}/>
                 <div style={{transform:this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)'}} className={this.state.SlideFlag ? "slide" : ""}>
                 <Carousel Carousel = {this.state.CarouselData} />
                 <SortList Sort = {this.state.SortData} />

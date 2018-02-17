@@ -3,8 +3,7 @@ import '../../css/Index.css';
 import SearchIcon from '../../image/icon/search_icon.png';
 import SearchQR from '../../image/icon/icon_scan_qr_code.png';
 import menu_message from '../../image/icon/title_menu_message.png';
-
-
+import {config} from "../../lib/config";
 
 
 class HeaderSearch extends Component {
@@ -16,7 +15,7 @@ class HeaderSearch extends Component {
                 {index && index[0] && index[0].index === '3' ?
                     <span className="header_title">购物车</span>
                     :
-                    <div className="search">
+                    <div onClick={()=>this.handleToSearch()} className="search">
                         <img className="search_icon" src={SearchIcon}/>
                         <p>Sulwhasoo养肤气垫</p>
                     </div>
@@ -28,6 +27,9 @@ class HeaderSearch extends Component {
                 }
             </header>
         )
+    }
+    handleToSearch = () =>{
+        this.props.history.push(config.path + '/search');
     }
 }
 
