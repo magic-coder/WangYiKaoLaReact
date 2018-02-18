@@ -7,6 +7,9 @@ export const DELETE_CAR = 'DELETE_CAR';
 
 export const ADD_COLLECT = 'ADD_COLLECT';
 
+export const ADD_SEARCH_HISTORY = 'ADD_SEARCH_HISTORY';
+export const DELE_SEARCH_HISTORY = 'DELE_SEARCH_HISTORY';
+
 /**
  * action 创建函数
  */
@@ -62,5 +65,20 @@ export function addCollect (CollectData) {
     return {
         type : ADD_COLLECT,
         CollectData
+    }
+}
+
+/**
+ * 以下是搜索的方法
+ */
+export function addSearchHistory (SearchTitle){
+    return {
+        type : ADD_SEARCH_HISTORY,
+        SearchTitle
+    }
+}
+export function deleSearchHistory (){
+    return {
+        type : DELE_SEARCH_HISTORY,
     }
 }

@@ -9,6 +9,7 @@ const config = {
         searchRecommendGoods : '/Qu9TRKea096dec5df0215d96e418954fad351e0d437ae8f?uri=/home/searchRecommendGoods',
         goodsActivity : '/Qu9TRKea096dec5df0215d96e418954fad351e0d437ae8f?uri=/home/activity',
         searchAllType : '/Qu9TRKea096dec5df0215d96e418954fad351e0d437ae8f?uri=/category/searchAllCategory',
+        searchData : '/Qu9TRKea096dec5df0215d96e418954fad351e0d437ae8f?uri=/home/searchData',
     },
 
     version : 'v1.0',

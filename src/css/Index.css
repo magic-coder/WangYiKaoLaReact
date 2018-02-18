@@ -123,6 +123,9 @@ footer .active .footer-title {
   background-color: #e6e6e6;
   outline: none;
 }
+.home .search_btn {
+  font-size: .62rem;
+}
 .home .menu_message {
   width: 1.1rem;
 }

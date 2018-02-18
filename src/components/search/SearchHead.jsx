@@ -3,19 +3,35 @@ import '../../css/Index.css';
 import SearchIcon from '../../image/icon/search_icon.png';
 import SearchQR from '../../image/icon/icon_scan_qr_code.png';
 
+import {connect} from 'react-redux';
+import {addSearchHistory} from "../../store/action";
+
 class SearchHead extends Component{
+    constructor(){
+        super();
+        this.state = {
+            searchDetail:'',
+        };
+    }
     render(){
         return(
             <header className="headerSearch flex flex-align-center">
                 <img  className="scan_qr_code" src={SearchQR}/>
                     <div className="search">
                         <img className="search_icon" src={SearchIcon}/>
-                        <input placeholder="气垫粉底" />
+                        <input onChange={(e)=>this.handleChangeSearch(e)} placeholder="气垫粉底" />
                     </div>
-                <div className="search_btn">搜索</div>
+                <div onClick={()=>this.handleSearch()} className="search_btn">搜索</div>
             </header>
         )
     }
+    handleSearch = () =>{
+        let detail = this.state.searchDetail === '' ? '气垫粉底' : this.state.searchDetail;
+        this.props.dispatch(addSearchHistory(detail));
+    }
+    handleChangeSearch = (e) =>{
+        this.setState({searchDetail:e.target.value});
+    }
 }
 
-export default SearchHead
+export default connect()(SearchHead)

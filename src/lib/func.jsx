@@ -81,17 +81,31 @@ const func = {
 
 
     /**
-     *  将一二三级分类归在一起的方法。(递归)
+     * 将一二三级分类归在一起的方法。(递归)
+     * @param type 传进来的type
+     * @param data allType数组
      */
     loop (type , data) {
         let typeList = [];
-        data.map((item,index)=>{
+        data.map((item)=>{
             if(type.type_id === item.type_parentId){
                 typeList.push(item);
                 type.subList = typeList;
                 this.loop(item , data);
             }
         })
+    },
+
+    /**
+     * 获取三个随机颜色数值(0-255);
+     * Math.random() * (max - min) + min;
+     */
+    getRanDomColor(){
+        let ColorArr = [];
+        for(let i = 0 ; i<3 ; i++){
+            ColorArr.push(parseInt(Math.random() * (255 - 0) + 0));
+        }
+        return ColorArr;
     }
 
 }

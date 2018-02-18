@@ -1,5 +1,14 @@
 import {combineReducers} from 'redux';
-import {CLICK_BAR, ADD_CART, CHOISE_CAR, TOGGLE_CAR , CHANGE_CAR_COUNT, DELETE_CAR , ADD_COLLECT} from './action';
+import {
+    CLICK_BAR,
+    ADD_CART,
+    CHOISE_CAR,
+    TOGGLE_CAR ,
+    CHANGE_CAR_COUNT,
+    DELETE_CAR ,
+    ADD_COLLECT ,
+    ADD_SEARCH_HISTORY ,
+    DELE_SEARCH_HISTORY ,} from './action';
 
 function click(state = [], action) {
     switch(action.type){
@@ -77,11 +86,28 @@ function collectGoods (state = [], action) {
     }
 }
 
+function search (state = [], action) {
+    switch (action.type) {
+        case ADD_SEARCH_HISTORY :
+            state.push(action.SearchTitle);
+            let setArr = new Set(state);
+            let newArr = Array.from(setArr);
+            state = newArr;
+            return [...state];
+            break;
+        case DELE_SEARCH_HISTORY :
+            state = [];
+            return [...state];
+        default : return state
+    }
+}
+
 
 const clickApp = combineReducers({
     click,
     cart,
     collectGoods,
+    search,
 });
 
 export default clickApp

@@ -19,7 +19,7 @@ class Category extends Component {
     render() {
         return (
             <div style={{overflow: 'hidden'}} className="home">
-                <HeaderSearch/>
+                <HeaderSearch history = {this.props.history} />
                 <div style={{transform: this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)'}}
                      className={this.state.SlideFlag ? "slide" : ""}>
                     <div className="category_container">
