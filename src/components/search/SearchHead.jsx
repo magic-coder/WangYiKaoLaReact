@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import '../../css/Index.css';
 import SearchIcon from '../../image/icon/search_icon.png';
-import SearchQR from '../../image/icon/icon_scan_qr_code.png';
+import return_icon from '../../image/icon/btn_back.png';
 
 import {connect} from 'react-redux';
 import {addSearchHistory} from "../../store/action";
@@ -16,7 +16,7 @@ class SearchHead extends Component{
     render(){
         return(
             <header className="headerSearch flex flex-align-center">
-                <img  className="scan_qr_code" src={SearchQR}/>
+                <img onClick={()=>this.handleReturn()} className="returns" src={return_icon}/>
                     <div className="search">
                         <img className="search_icon" src={SearchIcon}/>
                         <input onChange={(e)=>this.handleChangeSearch(e)} placeholder="气垫粉底" />
@@ -31,6 +31,9 @@ class SearchHead extends Component{
     }
     handleChangeSearch = (e) =>{
         this.setState({searchDetail:e.target.value});
+    }
+    handleReturn = () =>{
+        this.props.history.goBack();
     }
 }
 

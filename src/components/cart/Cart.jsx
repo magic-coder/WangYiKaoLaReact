@@ -9,6 +9,7 @@ import CartLike from './CartLike';
 import CartList from './CartList';
 
 import func from '../../lib/func';
+import {config} from "../../lib/config";
 
 class Cart extends Component {
     constructor() {
@@ -17,13 +18,14 @@ class Cart extends Component {
             SlideName: '',
             SlideFlag: false,
             EditFlag: false,
+            LikeData : [],
         };
     }
 
     render() {
         const {index , cartData} = this.props;
         return (
-            <div style={{overflow: 'hidden'}} className="home">
+            <div style={{overflow: 'scroll',}} className="home">
                 <Header index={index}/>
                 <span onClick={()=>this.handleChangeEditState()} className="edit_cart_text">{this.state.EditFlag ? '完成' : '编辑'}</span>
                 <div style={{transform: this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)'}}
@@ -51,7 +53,7 @@ class Cart extends Component {
                             <span className="like_line">{}</span>
                             <p className="like_title">猜你喜欢</p>
                         </div>
-                        <CartLike/>
+                        <CartLike LikeData = {this.state.LikeData} />
                     </div>
                 </div>
                 <CartAccount cartData = {cartData}/>
@@ -60,7 +62,9 @@ class Cart extends Component {
     }
 
     componentWillMount() {
-        const slideName = func.slide('2');
+        const lastName = func.getData('slideName');
+        const backArray = ['person'];
+        const slideName = func.slide(lastName,backArray);
         this.setState({SlideName: slideName});
     }
 
@@ -68,11 +72,21 @@ class Cart extends Component {
         const that = this;
         setTimeout(function () {
             that.setState({SlideFlag: true});
-        }, 0)
+        }, 0);
+        func.setData('slideName','cart');
+        this.handleSearchCartLike();
     }
 
     handleChangeEditState = () =>{
         this.setState({EditFlag:!this.state.EditFlag});
+    }
+
+    handleSearchCartLike = () =>{
+        return func.post(config.requestUrl.searchCartLike,{}).then((req)=>{
+            if(req.code === 1){
+                this.setState({LikeData:req.data || []});
+            }
+        })
     }
 }
 

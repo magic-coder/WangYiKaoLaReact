@@ -20,58 +20,6 @@ class Index extends Component {
             SlideName : '',
             SlideFlag : false,
             CarouselData : [],
-            SortData : [
-                {
-                    id : '1',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '2',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '3',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '4',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '5',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '6',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '7',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '8',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '9',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-                {
-                    id : '10',
-                    sort_name : '美妆',
-                    file_path : '',
-                },
-            ],
             ProductData : [],
         };
     }
@@ -82,7 +30,7 @@ class Index extends Component {
                 <HeaderSearch history = {history}/>
                 <div style={{transform:this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)'}} className={this.state.SlideFlag ? "slide" : ""}>
                 <Carousel Carousel = {this.state.CarouselData} />
-                <SortList Sort = {this.state.SortData} />
+                <SortList history = {history} Sort = {this.state.SortData} />
                 <Activity/>
                 <p className="choise_activity_title"><img className="comment_icon" src={choise_icon} />精选活动</p>
                 <Choise_Activity history = {history} />
@@ -93,7 +41,9 @@ class Index extends Component {
         )
     }
     componentWillMount(){
-        const slideName = func.slide('1');
+        /*不管哪个页面回来，index都是slide-back*/
+        const backArray = ['index'];
+        const slideName = func.slide('index',backArray);
         this.setState({SlideName:slideName});
     }
     componentDidMount(){
@@ -101,7 +51,9 @@ class Index extends Component {
         /*setTimeout中的this，其作用域永远指向window。so在要外面单独给当前this开一个空间*/
         setTimeout(function(){
             that.setState({SlideFlag:true});
-        },0)
+        },0);
+
+        func.setData('slideName','index');
 
         this.handleSearchBanner().then(()=>{
             this.handleSearchRecommendGoods('美妆');

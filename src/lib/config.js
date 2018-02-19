@@ -10,6 +10,7 @@ const config = {
         goodsActivity : '/Qu9TRKea096dec5df0215d96e418954fad351e0d437ae8f?uri=/home/activity',
         searchAllType : '/Qu9TRKea096dec5df0215d96e418954fad351e0d437ae8f?uri=/category/searchAllCategory',
         searchData : '/Qu9TRKea096dec5df0215d96e418954fad351e0d437ae8f?uri=/home/searchData',
+        searchCartLike : '/Qu9TRKea096dec5df0215d96e418954fad351e0d437ae8f?uri=/cart/SearchLikeGoods',
     },
 
     version : 'v1.0',

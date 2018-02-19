@@ -4,10 +4,14 @@ import {config} from './config';
 
 const func = {
     /**
-     * 路由动画的方法
+     * 路由动画
+     * @param BackName  启动back动画的数组
      */
     slide (name,BackName) {
-        if(name == '1'){
+        let flag = BackName.findIndex(function(value) {
+            return value === name;
+        });
+        if(flag !== -1){
             return 'slide-back';
         }else{
             return 'slide-go';
@@ -103,7 +107,7 @@ const func = {
     getRanDomColor(){
         let ColorArr = [];
         for(let i = 0 ; i<3 ; i++){
-            ColorArr.push(parseInt(Math.random() * (255 - 0) + 0));
+            ColorArr.push(parseInt(Math.random() * 255));
         }
         return ColorArr;
     }

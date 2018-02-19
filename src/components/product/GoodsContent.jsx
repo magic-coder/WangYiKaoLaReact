@@ -131,7 +131,10 @@ class GoodsContent extends Component{
     }
 
     componentWillMount(){
-        const slideName = func.slide('2');
+        const lastName = func.getData('slideName');
+        const backArray = ['index'];
+
+        const slideName = func.slide(lastName,backArray);
         this.setState({SlideName:slideName});
     }
 

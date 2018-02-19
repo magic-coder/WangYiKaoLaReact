@@ -74,7 +74,10 @@ class Category extends Component {
     }
 
     componentWillMount() {
-        const slideName = func.slide('2');
+        const lastName = func.getData('slideName');
+        const backArray = ['search','cart','person'];
+
+        const slideName = func.slide(lastName,backArray);
         this.setState({SlideName: slideName});
     }
 
@@ -83,6 +86,7 @@ class Category extends Component {
         setTimeout(function () {
             that.setState({SlideFlag: true});
         }, 0);
+        func.setData('slideName','category');
         this.handleSearchAllType();
     }
 
@@ -102,7 +106,6 @@ class Category extends Component {
                 typeList.forEach((item) => {
                     func.loop(item, req.data);
                 });
-                console.log(typeList);
                 this.setState({TypeData: typeList}, () => {
                     this.handleClickType(0);
                 });

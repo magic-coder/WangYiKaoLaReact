@@ -17,7 +17,7 @@ class Search extends Component{
     render(){
         return(
             <div className="home search_content">
-                <SearchHead/>
+                <SearchHead history={this.props.history} />
                 <div className="search_box">
                     <SearchBefore {...this.state} />
                 </div>
@@ -28,6 +28,7 @@ class Search extends Component{
 
     }
     componentDidMount(){
+        window.scrollTo(0,0);
         this.handlecheckDetai();
     }
     handlecheckDetai = () =>{

@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import '../../css/person.css';
-import CollectHeader from './CollectHeader';
+import CollectHeader from '../base/OtherHeader';
+import ungoods from '../../image/icon/empty_cart_hint.png';
 
 import {connect} from 'react-redux';
 import {addCart} from "../../store/action";
@@ -21,7 +22,14 @@ class Collect extends Component{
         return(
             <div className="collect_content">
                 <CollectHeader title_name = '收藏' {...this.props} />
-                <ul style={{transform:this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)'}} className={this.state.SlideFlag ? "slide collect_ul" : "collect_ul"} >
+                <div style={{transform:this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)'}} className={this.state.SlideFlag ? "slide" : ""}>
+                {collectGoods.length === 0 ?
+                    <div className="nopage">
+                        <img src={ungoods} />
+                        <p>还没有收藏任何商品哦！</p>
+                    </div>
+                    : ''}
+                <ul className="collect_ul" >
                     {
                         collectGoods.map((collectItem,index)=>{
                             return(
@@ -38,12 +46,15 @@ class Collect extends Component{
                         })
                     }
                 </ul>
+                </div>
             </div>
         )
     }
 
     componentWillMount(){
-        const slideName = func.slide('2');
+        const lastName = func.getData('slideName');
+        const backArray = [];
+        const slideName = func.slide(lastName,backArray);
         this.setState({SlideName:slideName});
     }
     componentDidMount(){

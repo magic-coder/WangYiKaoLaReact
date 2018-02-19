@@ -11,6 +11,7 @@ import GoodsContent from './product/GoodsContent';
 import Person from './person/Person';
 import Collect from './person/Collect';
 import Search from './search/Search';
+import NoPage from './base/NoPage';
 /*路由文件*/
 import {
     BrowserRouter as Router,
@@ -48,6 +49,7 @@ class RouterIndex extends Component {
                         <Route path={config.path + '/my'} component={Person} />
                         <Route path={config.path + '/collect'} component={Collect} />
                         <Route path={config.path + '/search'} component={Search} />
+                        <Route path={config.path + '/nopage'} component={NoPage} />
                         <Route component={Index} />
                     </Switch>
 
