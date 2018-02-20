@@ -4,6 +4,8 @@ import HeaderSearch from '../base/HeaderSearch';
 import sale_arrow from '../../image/icon/hot_sale_arrow.png';
 import func from '../../lib/func';
 import {config} from "../../lib/config";
+import {connect} from 'react-redux';
+import {setLoadData} from "../../store/action";
 
 class Category extends Component {
     constructor() {
@@ -87,7 +89,20 @@ class Category extends Component {
             that.setState({SlideFlag: true});
         }, 0);
         func.setData('slideName','category');
-        this.handleSearchAllType();
+        if(!func.checkLoadDetail('category',this.props.loadData)){
+            this.handleSearchAllType().then(()=>{
+                const categoryData = {name:'category',data:this.state.TypeData};
+                this.props.dispatch(setLoadData(categoryData));
+            });
+        }else{
+            const categoryIndex = func.getIndexByLoadData('category',this.props.loadData);
+            this.setState({
+                TypeData : this.props.loadData[categoryIndex].data,
+            },()=>{
+                this.handleClickType(0);
+            });
+        }
+
     }
 
     handleSearchAllType = () => {
@@ -111,7 +126,7 @@ class Category extends Component {
                 });
             }
         })
-    }
+    };
     handleClickType = (index) => {
         const TypeData = this.state.TypeData;
         TypeData.forEach((item, typeIndex) => {
@@ -126,4 +141,10 @@ class Category extends Component {
     }
 }
 
-export default Category
+const getLoadData = state =>{
+    return {
+        loadData : state.setload,
+    }
+}
+
+export default connect(getLoadData)(Category)

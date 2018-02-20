@@ -22,7 +22,7 @@ class Collect extends Component{
         return(
             <div className="collect_content">
                 <CollectHeader title_name = '收藏' {...this.props} />
-                <div style={{transform:this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)'}} className={this.state.SlideFlag ? "slide" : ""}>
+                <div style={{transform:this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)',paddingTop:'2.15rem'}} className={this.state.SlideFlag ? "slide" : ""}>
                 {collectGoods.length === 0 ?
                     <div className="nopage">
                         <img src={ungoods} />
@@ -34,9 +34,9 @@ class Collect extends Component{
                         collectGoods.map((collectItem,index)=>{
                             return(
                                 <li key={index}>
-                                    <div className="collect_img"><img src={config.imgUrl + collectItem.file_path} /></div>
+                                    <div onClick={()=>this.handleToGoodsContent(collectItem.goods_id,collectItem)} className="collect_img"><img src={config.imgUrl + collectItem.file_path} /></div>
                                     <div className="collect_right_content">
-                                        <p className="goods_title">{collectItem.goods_name}</p>
+                                        <p onClick={()=>this.handleToGoodsContent(collectItem.goods_id,collectItem)} className="goods_title">{collectItem.goods_name}</p>
                                         <p className="goods_price"><span className="small">¥</span>{collectItem.after_price}</p>
                                         <a className="goods_discount">{collectItem.discount_explain}</a>
                                         <a onClick={cartData => dispatch(addCart(collectItem))} className="add_car">加入购物车</a>
@@ -63,6 +63,10 @@ class Collect extends Component{
             that.setState({SlideFlag:true});
         },0)
     }
+    handleToGoodsContent = (goods_id,ProductItem) =>{
+        func.setData('goodsData',ProductItem);
+        this.props.history.push(config.path + '/goods/' + goods_id);
+    };
 
 }
 

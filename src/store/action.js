@@ -10,6 +10,8 @@ export const ADD_COLLECT = 'ADD_COLLECT';
 export const ADD_SEARCH_HISTORY = 'ADD_SEARCH_HISTORY';
 export const DELE_SEARCH_HISTORY = 'DELE_SEARCH_HISTORY';
 
+export const ALREADY_LOAD = 'ALREADY_LOAD';
+
 /**
  * action 创建函数
  */
@@ -80,5 +82,15 @@ export function addSearchHistory (SearchTitle){
 export function deleSearchHistory (){
     return {
         type : DELE_SEARCH_HISTORY,
+    }
+}
+
+/**
+ * 执行请求后的方法，把对应的页面值和data存起来，第二次访问时不作重新请求。
+ */
+export function setLoadData(LoadData){
+    return {
+        type : ALREADY_LOAD,
+        LoadData
     }
 }

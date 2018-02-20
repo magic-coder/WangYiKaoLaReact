@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {config} from "../../lib/config";
+import func from '../../lib/func';
 
 /*布局问题*/
 class CartLike extends Component {
@@ -11,9 +12,9 @@ class CartLike extends Component {
                     LikeData.map((item, index) => {
                         return (
                             <li key={index} className="likely_li">
-                                <a className="img_block"><img
+                                <a onClick={()=>this.handleToGoodsContent(item.goods_id,item)} className="img_block"><img
                                     src={config.imgUrl + item.file_path}/></a>
-                                <p className="goods_title">{item.goods_name}</p>
+                                <p  onClick={()=>this.handleToGoodsContent(item.goods_id,item)} className="goods_title">{item.goods_name}</p>
                                 <div className="likely_reason">
                                     <span>小考拉：{item.goods_detail}</span>
                                 </div>
@@ -25,6 +26,10 @@ class CartLike extends Component {
                 }
             </ul>
         )
+    }
+    handleToGoodsContent = (goods_id,ProductItem) =>{
+        func.setData('goodsData',ProductItem);
+        this.props.history.push(config.path + '/goods/' + goods_id);
     }
 }
 

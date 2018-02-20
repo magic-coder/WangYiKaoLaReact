@@ -8,7 +8,9 @@ import {
     DELETE_CAR ,
     ADD_COLLECT ,
     ADD_SEARCH_HISTORY ,
-    DELE_SEARCH_HISTORY ,} from './action';
+    DELE_SEARCH_HISTORY ,
+    ALREADY_LOAD,
+} from './action';
 
 function click(state = [], action) {
     switch(action.type){
@@ -102,12 +104,29 @@ function search (state = [], action) {
     }
 }
 
+function setload (state = [], action) {
+    switch (action.type) {
+        case ALREADY_LOAD :
+            let flag = false;
+            state.forEach((item)=>{
+                if(item.name === action.LoadData.name){
+                    flag = true;
+                }
+            });
+            if(!flag){state.push(action.LoadData);}
+            return [...state];
+            break;
+        default : return state;
+    }
+}
+
 
 const clickApp = combineReducers({
     click,
     cart,
     collectGoods,
     search,
+    setload,
 });
 
 export default clickApp

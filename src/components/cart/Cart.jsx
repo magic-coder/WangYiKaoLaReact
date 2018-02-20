@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import '../../css/cart.css';
-import empty_cart from '../../image/icon/empty_cart_hint.png'
+import empty_cart from '../../image/icon/empty_cart_hint.png';
 import HomeIcon from '../../image/icon/home_normal.png';
 import CartAccount from './CartAccount';
 import Header from '../base/HeaderSearch';
@@ -10,6 +10,7 @@ import CartList from './CartList';
 
 import func from '../../lib/func';
 import {config} from "../../lib/config";
+import {setLoadData} from "../../store/action";
 
 class Cart extends Component {
     constructor() {
@@ -41,7 +42,7 @@ class Cart extends Component {
                                 <span className="choise_all"><img src={HomeIcon}/></span>
                                 <span>考拉自营</span>
                             </p>
-                            <CartList cartData = {cartData} EditFlag = {this.state.EditFlag} />
+                            <CartList history={this.props.history} cartData = {cartData} EditFlag = {this.state.EditFlag} />
                         </div>
                     }
 
@@ -53,7 +54,7 @@ class Cart extends Component {
                             <span className="like_line">{}</span>
                             <p className="like_title">猜你喜欢</p>
                         </div>
-                        <CartLike LikeData = {this.state.LikeData} />
+                        <CartLike history={this.props.history} LikeData = {this.state.LikeData} />
                     </div>
                 </div>
                 <CartAccount cartData = {cartData}/>
@@ -74,7 +75,16 @@ class Cart extends Component {
             that.setState({SlideFlag: true});
         }, 0);
         func.setData('slideName','cart');
-        this.handleSearchCartLike();
+        if(!func.checkLoadDetail('cartLike',this.props.loadData)){
+            this.handleSearchCartLike().then(()=>{
+                const cartLikeData = {name:'cartLike',data:this.state.LikeData};
+                this.props.dispatch(setLoadData(cartLikeData));
+            });
+        }else{
+            const cartLikeIndex = func.getIndexByLoadData('cartLike',this.props.loadData);
+            this.setState({LikeData : this.props.loadData[cartLikeIndex].data,})
+        }
+
     }
 
     handleChangeEditState = () =>{
@@ -94,6 +104,7 @@ const getList = state => {
     return {
         index: state.click,
         cartData: state.cart,
+        loadData : state.setload,
     }
 }
 export default connect(getList)(Cart)

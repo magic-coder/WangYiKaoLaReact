@@ -110,8 +110,31 @@ const func = {
             ColorArr.push(parseInt(Math.random() * 255));
         }
         return ColorArr;
+    },
+
+    /**
+     * 查看该页面有没有执行过请求的方法。用于判断是否需要执行ajax请求。
+     */
+    checkLoadDetail(loadName,loadData){
+        let flag = false;
+        loadData.forEach((item)=>{
+            if(item.name === loadName){
+                flag = true;
+            }
+        });
+        return flag;
+    },
+    /*查看在已加载数组中对应名字的索引值*/
+    getIndexByLoadData (loadName , loadData) {
+        let turnIndex = 0;
+        loadData.forEach((item,index)=>{
+            if(item.name === loadName){
+                turnIndex = index;
+            }
+        });
+        return turnIndex;
     }
 
-}
+};
 
 export default func

@@ -3,17 +3,11 @@ import {config} from "../../lib/config";
 import func from '../../lib/func';
 
 class Choise_Activity extends Component {
-    constructor(){
-        super();
-        this.state = {
-            activityData: [{activity_goods:[]}],
-        }
-    }
     render(){
         return(
             <ul className="ChoiseAc_ul">
                 {
-                    this.state.activityData.map((activityItem,index)=>{
+                    this.props.activityData.map((activityItem,index)=>{
                         return(
                             <li key={index} className="ChoiseAc_li">
                                 <div className="img_place">
@@ -41,15 +35,7 @@ class Choise_Activity extends Component {
         )
     }
     componentDidMount(){
-        this.handleSearchActivity();
-    }
 
-    handleSearchActivity = () =>{
-        return func.post(config.requestUrl.goodsActivity,{}).then((req)=>{
-            if(req.code === 1){
-                this.setState({activityData:req.data});
-            }
-        })
     }
 
     handleToGoodsContent = (goods_id,ProductItem) =>{

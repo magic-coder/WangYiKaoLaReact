@@ -12,6 +12,8 @@ import Product from '../home/Product';   /*商品*/
 
 import func from '../../lib/func';
 import {config} from '../../lib/config';
+import {connect} from 'react-redux';
+import {setLoadData} from "../../store/action";
 
 class Index extends Component {
     constructor(){
@@ -21,6 +23,7 @@ class Index extends Component {
             SlideFlag : false,
             CarouselData : [],
             ProductData : [],
+            activityData: [{activity_goods:[]}],
         };
     }
     render(){
@@ -33,7 +36,7 @@ class Index extends Component {
                 <SortList history = {history} Sort = {this.state.SortData} />
                 <Activity/>
                 <p className="choise_activity_title"><img className="comment_icon" src={choise_icon} />精选活动</p>
-                <Choise_Activity history = {history} />
+                <Choise_Activity activityData={this.state.activityData} history = {history} />
                 <p className="choise_activity_title"><img className="comment_icon" src={goods_icon} />为你推荐</p>
                 <Product ProductData = {this.state.ProductData} history = {history} />
                 </div>
@@ -55,10 +58,30 @@ class Index extends Component {
 
         func.setData('slideName','index');
 
-        this.handleSearchBanner().then(()=>{
-            this.handleSearchRecommendGoods('美妆');
-        });
 
+        if(!func.checkLoadDetail('banner',this.props.loadData) && !func.checkLoadDetail('recommend',this.props.loadData)){
+            this.handleSearchBanner().then(()=>{
+                this.handleSearchRecommendGoods('美妆').then(()=>{
+                    this.handleSearchActivity().then(()=>{
+                        const BannerData = {name:'banner',data:this.state.CarouselData};
+                        const RecommendData = {name:'recommend',data:this.state.ProductData};
+                        const ActivityData = {name:'activity',data:this.state.activityData};
+                        this.props.dispatch(setLoadData(BannerData));
+                        this.props.dispatch(setLoadData(RecommendData));
+                        this.props.dispatch(setLoadData(ActivityData));
+                    });
+                });
+            });
+        }else{
+            const CarouselIndex = func.getIndexByLoadData('banner',this.props.loadData);
+            const ProductIndex = func.getIndexByLoadData('recommend',this.props.loadData);
+            const ActivityIndex = func.getIndexByLoadData('activity',this.props.loadData);
+            this.setState({
+                CarouselData : this.props.loadData[CarouselIndex].data,
+                ProductData : this.props.loadData[ProductIndex].data,
+                activityData : this.props.loadData[ActivityIndex].data,
+            })
+        }
 
     }
 
@@ -67,14 +90,14 @@ class Index extends Component {
         return func.post(config.requestUrl.banner,{}).then(req=>{
             if(req.code === 1){
                 req.data.forEach((item,index)=>{
-                    item.visible = index === 0 ? true : false;
-                })
+                    item.visible = index === 0;
+                });
                 this.setState({CarouselData:req.data});
             }
         }).catch((err)=>{
             console.error(err);
         });
-    }
+    };
 
     //首页推荐商品
     handleSearchRecommendGoods = (need_typeName) =>{
@@ -85,7 +108,23 @@ class Index extends Component {
         }).catch((error) =>{
             console.error(error);
         })
+    };
+
+    //首页推荐活动
+    handleSearchActivity = () =>{
+        return func.post(config.requestUrl.goodsActivity,{}).then((req)=>{
+            if(req.code === 1){
+                this.setState({activityData:req.data});
+            }
+        })
     }
 }
 
-export default Index
+
+const getLoadData = state =>{
+    return {
+        loadData : state.setload,
+    }
+}
+
+export default connect(getLoadData)(Index)

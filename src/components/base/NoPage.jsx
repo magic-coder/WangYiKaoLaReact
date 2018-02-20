@@ -23,7 +23,9 @@ class NoPage extends Component{
         )
     }
     componentWillMount(){
-        const slideName = func.slide('2');
+        const lastName = func.getData('slideName');
+        const backArray = [];
+        const slideName = func.slide(lastName,backArray);
         this.setState({SlideName:slideName});
     }
     componentDidMount(){

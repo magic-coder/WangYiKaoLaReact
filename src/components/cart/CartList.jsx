@@ -6,6 +6,7 @@ import {config} from "../../lib/config";
 import {connect} from 'react-redux';
 import {changeChoise, changeCartCount ,deleteCartData} from "../../store/action";
 import Modal from '../base/Modal';
+import func from '../../lib/func';
 
 /**
  * 此处有一坑，transform下的position:fixed 无法固定。有空回来想解决办法
@@ -46,7 +47,7 @@ class CartList extends Component {
                                 <span onClick={cartData => dispatch(changeChoise(CartIndex))}
                                       className="choise_box"><img src={CartItem.choise ? Choise : UnChoise}/></span>
                                 <div className="cart_right_content">
-                                    <span className="right_content_img"><img src={config.imgUrl + CartItem.file_path}/></span>
+                                    <span onClick={()=>this.handleToGoodsContent(CartItem.goods_id,CartItem)} className="right_content_img"><img src={config.imgUrl + CartItem.file_path}/></span>
                                     <div className="right_content_title">
                                         {
                                             EditFlag ?
@@ -57,7 +58,7 @@ class CartList extends Component {
                                                 </div>
                                                 :
                                                 <div>
-                                                    <p className="content_title">
+                                                    <p onClick={()=>this.handleToGoodsContent(CartItem.goods_id,CartItem)} className="content_title">
                                                         <span
                                                             className="right_content_icon">{CartItem.discount_explain}</span>{CartItem.goods_name}
                                                     </p>
@@ -85,11 +86,15 @@ class CartList extends Component {
         this.setState({deleteIndex:index} , ()=>{
             this.setState({visible:!this.state.visible});
         })
-    }
+    };
     handleDelete = () =>{
         this.props.dispatch(deleteCartData(this.state.deleteIndex));
         this.handleControlModal('');
-    }
+    };
+    handleToGoodsContent = (goods_id,ProductItem) =>{
+        func.setData('goodsData',ProductItem);
+        this.props.history.push(config.path + '/goods/' + goods_id);
+    };
 }
 
 export default connect()(CartList)
