@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import '../../css/Index.css';
 import {config} from '../../lib/config';
 let phone_width = 0;    /*对应屏幕的宽度*/
 let carousel_Index = 0;   /*touchStart事件中获取到的对应index值*/

@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import '../../css/Product.css';
 import return_icon from '../../image/icon/title_back_icon.png';
 import HomeActive from '../../image/icon/home_focus.png';
 import rightIcon from '../../image/icon/arrowRight.png';

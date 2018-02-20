@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import {config} from '../../lib/config';
 import func from '../../lib/func';
+import LazyLoad from 'react-lazyload';
 
 class Product extends Component{
     constructor(props){
@@ -15,7 +16,11 @@ class Product extends Component{
                         ProductData.map((ProductItem)=>{
                             return(
                                 <li key={ProductItem.goods_id} className="product_li">
-                                    <a className="img_block"><img onClick={()=>this.handleToGoodsContent(ProductItem.goods_id , ProductItem)} src={config.imgUrl + ProductItem.file_path} /></a>
+                                    <a className="img_block">
+                                        <LazyLoad>
+                                        <img onClick={()=>this.handleToGoodsContent(ProductItem.goods_id , ProductItem)} src={config.imgUrl + ProductItem.file_path} />
+                                        </LazyLoad>
+                                    </a>
                                     <p className="goods_title">{ProductItem.goods_name}</p>
                                     <p className="before_price">原价¥<del>{ProductItem.before_price}</del></p>
                                     <p className="after_price">售价¥{ProductItem.after_price}<span className="discount">{ProductItem.discount_explain}</span></p>

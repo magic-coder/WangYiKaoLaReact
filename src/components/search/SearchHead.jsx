@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import '../../css/Index.css';
 import SearchIcon from '../../image/icon/search_icon.png';
 import return_icon from '../../image/icon/btn_back.png';
 

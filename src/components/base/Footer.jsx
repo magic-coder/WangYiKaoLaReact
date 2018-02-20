@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../../css/Index.css';
 import {Link} from 'react-router-dom';
 /*这是没被选中的图标*/
 import HomeIcon from '../../image/icon/home_normal.png';

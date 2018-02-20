@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import '../../css/person.css';
 import CollectHeader from '../base/OtherHeader';
 import ungoods from '../../image/icon/empty_cart_hint.png';
 

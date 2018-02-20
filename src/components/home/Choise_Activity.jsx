@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {config} from "../../lib/config";
 import func from '../../lib/func';
+import LazyLoad from 'react-lazyload';
 
 class Choise_Activity extends Component {
     render(){
@@ -12,7 +13,9 @@ class Choise_Activity extends Component {
                             <li key={index} className="ChoiseAc_li">
                                 <div className="img_place">
                                     <span className="white_angel"></span>
+                                    <LazyLoad>
                                     <img src={config.imgUrl + activityItem.file_path} />
+                                    </LazyLoad>
                                 </div>
                                 <ul className="ChoiseAc_goods">
                                     {
@@ -21,7 +24,9 @@ class Choise_Activity extends Component {
                                                 <li onClick={()=>this.handleToGoodsContent(item.goods_id , item)} key={acIndex} className="ChoiseAc_goods_li">
                                                     <p className="goods_li_title">{item.goods_name}</p>
                                                     <p className="goods_li_explain">{item.goods_detail}</p>
+                                                    <LazyLoad>
                                                     <img src={config.imgUrl + item.file_path} className="goods_li_img" />
+                                                    </LazyLoad>
                                                 </li>
                                             )
                                         })

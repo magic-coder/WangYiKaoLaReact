@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import '../../css/Index.css';
 import nopage from '../../image/goods/sleep.png';
 import Header from '../base/OtherHeader';
 import func from '../../lib/func';

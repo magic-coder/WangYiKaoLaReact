@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import '../../css/cart.css';
 import empty_cart from '../../image/icon/empty_cart_hint.png';
 import HomeIcon from '../../image/icon/home_normal.png';
 import CartAccount from './CartAccount';

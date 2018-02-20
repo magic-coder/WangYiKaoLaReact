@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
 import '../css/reset.css';
+import '../css/cart.css';
+import '../css/category.css';
+import '../css/person.css';
+import '../css/Index.css';
+import '../css/Search.css';
 import '../lib/rem2px';   /*rem算法*/
 
-
-/*路由文件*/
-import Index from './home/Index';
-import Category from './category/Category';
-import Cart from './cart/Cart';
-import GoodsContent from './product/GoodsContent';
-import Person from './person/Person';
-import Collect from './person/Collect';
-import Search from './search/Search';
-import NoPage from './base/NoPage';
-/*路由文件*/
 import {
     BrowserRouter as Router,
     Route,
@@ -25,6 +19,20 @@ import {clickBar} from "../store/action";
 
 /*底部栏*/
 import Footer from './base/Footer';
+
+import asyncComponent from './base/AsyncComponent'
+/*路由文件*/
+import Index from './home/Index';
+// const Index = asyncComponent(()=> import("./home/Index"));
+const Category = asyncComponent(() => import("./category/Category.jsx"));
+const Cart = asyncComponent(()=> import("./cart/Cart.jsx"));
+const GoodsContent = asyncComponent(()=> import("./product/GoodsContent"));
+const Person = asyncComponent(()=> import("./person/Person"));
+const Collect = asyncComponent(()=> import("./person/Collect"));
+const Search = asyncComponent(()=> import("./search/Search"));
+const NoPage = asyncComponent(()=> import("./base/NoPage"));
+/*路由文件*/
+
 
 const getList = state => {
     return {

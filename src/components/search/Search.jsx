@@ -1,7 +1,6 @@
 import React,{Component} from 'react';
 import SearchHead from './SearchHead';
 import SearchBefore from './SearchBefore';
-import '../../css/Search.css';
 import {config} from "../../lib/config";
 import func from '../../lib/func';
 

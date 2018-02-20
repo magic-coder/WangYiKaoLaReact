@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../../css/Index.css';
 import SearchIcon from '../../image/icon/search_icon.png';
 import SearchQR from '../../image/icon/icon_scan_qr_code.png';
 import menu_message from '../../image/icon/title_menu_message.png';

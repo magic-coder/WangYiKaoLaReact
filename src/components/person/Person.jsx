@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import '../../css/person.css';
 import headimg from '../../image/goods/headimg.png';
 
 import {connect} from 'react-redux';

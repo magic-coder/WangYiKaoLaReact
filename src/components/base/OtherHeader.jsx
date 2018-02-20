@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import '../../css/person.css';
 import return_icon from '../../image/icon/btn_back.png';
 
 class CollectHeader extends Component{

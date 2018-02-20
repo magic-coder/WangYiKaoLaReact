@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import '../../css/category.css';
 import HeaderSearch from '../base/HeaderSearch';
 import sale_arrow from '../../image/icon/hot_sale_arrow.png';
 import func from '../../lib/func';
