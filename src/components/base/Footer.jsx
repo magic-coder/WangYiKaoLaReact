@@ -45,7 +45,7 @@ export default class Footer extends Component{
                     </Link>
                 </div>
                 <div onClick={()=>this.props.clickBar('2')}  className={index[0] && index[0].index === '2' ? "footer_item active": 'footer_item'}>
-                    <Link to="/Index3">
+                    <Link to="/nopage">
                         <i style={index[0] && index[0].index === '2' ? RecommentFocus : RecommendStyle} className="icon footerIcon">{}</i>
                         <p className="footer-title">种草社区</p>
                     </Link>

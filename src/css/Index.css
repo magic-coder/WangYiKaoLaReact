@@ -145,6 +145,14 @@ footer .active .footer-title {
   right: .6rem;
   z-index: 67;
 }
+.home .delete_all {
+  position: fixed;
+  display: block;
+  text-align: center;
+  bottom: 2.73rem ;
+  left: 4rem;
+  z-index: 66;
+}
 .home .carousel {
   width: 100%;
   height: 8rem;
@@ -453,7 +461,7 @@ footer .active .footer-title {
   border-radius: 15%;
   margin-left: .5rem;
   padding: .006rem .05rem;
-  font-size: .22rem;
+  font-size: .52rem;
 }
 .home .modal_container {
   position: fixed;

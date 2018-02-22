@@ -4,6 +4,7 @@ export const CHOISE_CAR = 'CHOISE_CAR';
 export const TOGGLE_CAR = 'TOGGLE_CAR';
 export const CHANGE_CAR_COUNT = 'CHANGE_CAR_COUNT';
 export const DELETE_CAR = 'DELETE_CAR';
+export const DELETE_CARS = 'DELETE_CARS';
 
 export const ADD_COLLECT = 'ADD_COLLECT';
 
@@ -11,6 +12,9 @@ export const ADD_SEARCH_HISTORY = 'ADD_SEARCH_HISTORY';
 export const DELE_SEARCH_HISTORY = 'DELE_SEARCH_HISTORY';
 
 export const ALREADY_LOAD = 'ALREADY_LOAD';
+
+export const ADD_ORDER = 'ADD_ORDER';
+export const DELE_ORDER = 'DELE_ORDER';
 
 /**
  * action 创建函数
@@ -59,6 +63,12 @@ export function deleteCartData(deleteIndex){
     }
 }
 
+export function deleteCartDatas(){
+    return {
+        type : DELETE_CARS,
+    }
+}
+
 /**
  * 以下是和收藏有关的方法
  */
@@ -92,5 +102,19 @@ export function setLoadData(LoadData){
     return {
         type : ALREADY_LOAD,
         LoadData
+    }
+}
+
+export function addOrder(orderData){
+    return {
+        type : ADD_ORDER,
+        orderData
+    }
+}
+
+export function deleOrder(orderIndex){
+    return {
+        type : DELE_ORDER,
+        orderIndex,
     }
 }

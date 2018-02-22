@@ -112,7 +112,7 @@ class GoodsContent extends Component{
                             <dd>{flag ? '已收藏' : '收藏'}</dd>
                         </dl>
                     </a>
-                    <a className="left_item">
+                    <a onClick={()=>this.handleTransfer('cart')} className="left_item">
                         <dl>
                             <dt><img src={CartIcon} /></dt>
                             <dd>购物车</dd>

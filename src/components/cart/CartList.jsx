@@ -45,7 +45,7 @@ class CartList extends Component {
                         return (
                             <li key={CartIndex} className="cart_li">
                                 <span onClick={cartData => dispatch(changeChoise(CartIndex))}
-                                      className="choise_box"><img src={CartItem.choise ? Choise : UnChoise}/></span>
+                                      className="choise_box"><img src={cartData.length > 0 && CartItem.choise ? Choise : UnChoise}/></span>
                                 <div className="cart_right_content">
                                     <span onClick={()=>this.handleToGoodsContent(CartItem.goods_id,CartItem)} className="right_content_img"><img src={config.imgUrl + CartItem.file_path}/></span>
                                     <div className="right_content_title">

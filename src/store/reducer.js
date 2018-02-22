@@ -6,10 +6,13 @@ import {
     TOGGLE_CAR ,
     CHANGE_CAR_COUNT,
     DELETE_CAR ,
+    DELETE_CARS,
     ADD_COLLECT ,
     ADD_SEARCH_HISTORY ,
     DELE_SEARCH_HISTORY ,
     ALREADY_LOAD,
+    ADD_ORDER,
+    DELE_ORDER,
 } from './action';
 
 function click(state = [], action) {
@@ -71,6 +74,17 @@ function cart(state = [] , action){
             state.splice(action.deleteIndex,1);
             return [...state];
             break;
+        case DELETE_CARS :
+            state.forEach((item,index)=>{
+                if(item.choise){delete state[index]}
+            });
+            let newArr = [];
+            state.forEach((newItem)=>{
+                if(newItem){newArr.push(newItem)}
+            });
+            state = newArr;
+            return [...state];
+            break;
         default : return state;
     }
 }
@@ -120,6 +134,25 @@ function setload (state = [], action) {
     }
 }
 
+function order (state = [], action) {
+    switch (action.type) {
+        case ADD_ORDER :
+            state.push(action.orderData);
+            return [...state];
+            break;
+        case DELE_ORDER :
+            delete state[action.orderIndex];
+            let newArr = [];
+            state.forEach((newItem)=>{
+                if(newItem){newArr.push(newItem)}
+            });
+            state = newArr;
+            return [...state];
+            break;
+        default : return state;
+    }
+}
+
 
 const clickApp = combineReducers({
     click,
@@ -127,6 +160,7 @@ const clickApp = combineReducers({
     collectGoods,
     search,
     setload,
+    order,
 });
 
 export default clickApp

@@ -5,6 +5,7 @@ import '../css/category.css';
 import '../css/person.css';
 import '../css/Index.css';
 import '../css/Search.css';
+import '../css/Product.css';
 import '../lib/rem2px';   /*rem算法*/
 
 import {
@@ -29,6 +30,7 @@ const Cart = asyncComponent(()=> import("./cart/Cart.jsx"));
 const GoodsContent = asyncComponent(()=> import("./product/GoodsContent"));
 const Person = asyncComponent(()=> import("./person/Person"));
 const Collect = asyncComponent(()=> import("./person/Collect"));
+const OrderList = asyncComponent(()=> import("./person/OrderList"));
 const Search = asyncComponent(()=> import("./search/Search"));
 const NoPage = asyncComponent(()=> import("./base/NoPage"));
 /*路由文件*/
@@ -57,6 +59,7 @@ class RouterIndex extends Component {
                         <Route path={config.path + '/my'} component={Person} />
                         <Route path={config.path + '/collect'} component={Collect} />
                         <Route path={config.path + '/search'} component={Search} />
+                        <Route path={config.path + '/orderlist'} component={OrderList} />
                         <Route path={config.path + '/nopage'} component={NoPage} />
                         <Route component={Index} />
                     </Switch>
