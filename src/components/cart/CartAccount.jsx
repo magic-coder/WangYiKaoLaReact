@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+﻿import React,{Component} from 'react';
 import UnChoise from '../../image/icon/check_unselected_black.png';
 import Choise from '../../image/icon/check_selected_black_exp.png';
 import moment from 'moment';
@@ -31,7 +31,7 @@ class CartAccount extends Component{
         cartData.forEach((item)=>{
             if(item.choise){
                 choiseIndex++;
-                allPrice += (parseInt(item.after_price)*item.goods_count);
+                allPrice += (parseFloat(item.after_price*item.goods_count).toFixed(2));
             }
         });
         return(

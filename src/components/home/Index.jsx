@@ -37,7 +37,6 @@ class Index extends Component {
         const {history} = this.props;
         return (
             <div className="home">
-
                 <HeaderSearch history={history}/>
                 <div style={{transform: this.state.SlideName === 'slide-go' ? 'translateX(100%)' : 'translateX(-100%)'}}
                      className={this.state.SlideFlag ? "slide" : ""}>
@@ -71,9 +70,7 @@ class Index extends Component {
         setTimeout(function () {
             that.setState({SlideFlag: true});
         }, 0);
-
         func.setData('slideName', 'index');
-
 
         if (!func.checkLoadDetail('banner', this.props.loadData) && !func.checkLoadDetail('recommend', this.props.loadData)) {
             this.handleSearchBanner().then(() => {
